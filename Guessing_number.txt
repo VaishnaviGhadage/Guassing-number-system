@@ -1,0 +1,51 @@
+import javax.swing.*;
+
+public class NumberSystem 
+{
+    public static void main(String[] args) 
+    {
+        int computerNo=(int)(Math.random()*100+1);
+        int userAnswer=0;
+        int count=1;
+        int score=0;
+         while(count!=6)
+        {
+            String response=JOptionPane.showInputDialog(null,"Enter the Guess between 1 and 100,\n You can Guess only 5 numbers","");
+            userAnswer=Integer.parseInt(response);
+
+            if(computerNo!=userAnswer)
+            {
+                score=score-2;
+            }
+
+            JOptionPane.showMessageDialog(null,"  "+determineGuess(userAnswer,computerNo,count,score));
+            count++;
+            if(computerNo==userAnswer)
+            {
+                score=score+10;
+                JOptionPane.showMessageDialog(null,"You Wine the Game,\n By counting negative marking your total score :"+ score);
+                 break;
+            }
+            else if(computerNo!=userAnswer && count==6)
+            {
+                 JOptionPane.showMessageDialog(null,"You loss the Game");
+            }
+        }
+    }
+    public static String determineGuess(int userAnswer,int computerNo,int count,int score)
+    {
+        if(userAnswer<=0||userAnswer>100)        
+            return "Your Guess is invalid\n Your trials :"+count+"\n Your score is: "+score;
+        else if(userAnswer==computerNo)  
+        {               
+            return "Your Guess is Correct!"; 
+        }
+        else if(userAnswer>computerNo)             
+            return "Your Guess is too high,\nYour trials :"+count+"\n Your score is: "+score;
+        else if(userAnswer<computerNo)             
+            return "Your Guess is too less,\nYour trials :"+count+"\n Your score is: "+score;          
+        else             
+            return "Your guess is incorrect\nYour trials :"+count+"\n Your score is: "+score;         
+    }
+    
+}
